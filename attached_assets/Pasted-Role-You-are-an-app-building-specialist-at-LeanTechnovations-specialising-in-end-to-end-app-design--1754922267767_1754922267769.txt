@@ -1,0 +1,158 @@
+Role
+You are an app building specialist at LeanTechnovations, specialising in end to end app design. Build a production-grade, full-stack JavaScript application with a Figma style UI.
+
+Context & Goal
+I met with a retail specialist who pitched the idea to create an app to help SME's (SMEs) in the retail and wholesale industry (links in with the WRSETA and we will pitch to them).
+Problem: SMEs in this industry struggle to comprehend the volume of data and to make operational decisions because the industry is fast moving and they lack time, structure, and skill to extract decision-making information—leading to failure.
+Goal: Build an app where users capture sales and inventory data and track main KPI's. Provide dashboards (Power BI Dashboard layout style) and AI insights to surface decisions fast.
+
+Non-negotiable Keywords (retain verbatim)
+LeanTechnovations, WRSETA, SME's, retail and wholesale industry, KPI's, Figma style UI, dark blue, black and red, Helvetica, SQL database, Power BI Dashboard layout style, AI insights, Retail Maths, Retail University, GRN Number, cost of sales, Gross Profit Margins.
+
+App Name
+Propose a catchy, appropriate name (e.g., “RetailPulse IQ” — feel free to improve).
+
+Core Features
+Home tab
+
+User login with password (secure auth, hashed passwords, session/JWT).
+
+Data tab with two sub tabs (persist both to a common SQL database so records link logically):
+
+Sales fields: Products, Skus, Description, Sales Price, data sold (keep exact field name “data sold”; also store as date sold internally).
+
+Inventory fields: products, skus, descriptions, purchase price, date purchased, GRN Number.
+
+Dashboards (Power BI Dashboard layout style, filterable by period):
+
+Sales dashboard: show sales current month, last 3 months, forecasts next 3 months, and calculated cost of sales and Gross Profit Margins.
+
+Inventory dashboard: by Sku, product name, quantity, cost of product, average number of units sold in the last 3 months.
+
+AI insights
+
+An insights panel on both dashboards where AI can read, understand and provide insights, and prompt the user where decisions need to be made (e.g., low stock, declining SKU margin, pricing anomalies).
+
+Retail Maths
+
+A chat bot that asks about a product they want to purchase and resell: quantity, purchase price amount, compute COS (cost of sales), ask how much sell for, then compute gross profit per unit and in total. Return a concise recommendation.
+
+Retail University
+
+A learning section with microlearning courses (sales, inventory management, supply chain management, managing finances, softskills like managing a team). Simple CMS-like CRUD for lessons and progress tracking.
+
+UI/UX Requirements
+Figma style UI; look very professional and user friendly and intuitive.
+
+Colors: dark blue, black and red.
+
+Font: Helvetica (consistent across app).
+
+Dashboards filterable by period; card + grid layout reminiscent of Power BI.
+
+Clear empty states, loading states, and inline field validation.
+
+Leave descriptions/comments in code explaining each part. No messing around.
+
+Tech Stack (recommended – adjust if needed for best reliability)
+Frontend: React (Next.js or Vite + React), component lib with a clean, “Figma-like” look; state via Redux/RTK or React Query for server state.
+
+Backend: Node.js (Express or Next.js API routes).
+
+DB: SQL database (PostgreSQL). Use an ORM (Prisma/TypeORM) and migrations.
+
+Auth: JWT (access+refresh) or NextAuth with credentials provider.
+
+AI: Lightweight server route that summarizes metrics and emits prompts; rule-based + LLM-ready abstraction (design for drop-in model).
+
+Charts: Production-ready chart lib with Power-BI-like tiles.
+
+Testing: Unit (Jest), integration (supertest), and basic e2e (Playwright).
+
+Lint/Format: ESLint + Prettier; strict TypeScript is preferred but pure JS acceptable if strongly typed via JSDoc.
+
+Data Model (minimum)
+Product(id, sku, name, description).
+
+InventoryEntry(id, productId→Product, purchasePrice, datePurchased, grnNumber, quantityReceived).
+
+Sale(id, productId→Product, salesPrice, dataSold string, dateSold date, quantitySold).
+
+MetricsCache(periodKey, kpis JSON) for fast dashboard loads.
+
+Lesson(id, title, category, contentURL|MD, durationMins).
+
+UserLessonProgress(userId, lessonId, status, lastViewedAt).
+
+User(id, email, passwordHash, role).
+
+Analytics & Forecasting
+Compute sales current month, last 3 months, and forecast next 3 months (use a simple moving average or exponential smoothing baseline; keep code modular to swap models).
+
+Compute cost of sales and Gross Profit Margins (per SKU and overall).
+
+Inventory dashboard: show current quantity, cost of product, and average units sold in last 3 months per SKU.
+
+All dashboards filterable by period and exportable to CSV.
+
+AI Insights Behavior
+Summarize trends (e.g., “GM% falling for SKU X”), flag anomalies, and prompt decisions (e.g., “Reorder 120 units of SKU Y based on run rate; expected stockout in 9 days”).
+
+Provide short rationales referencing the displayed KPIs.
+
+Security & Quality
+Input validation on all forms.
+
+RBAC-ready roles.
+
+Protect API routes; avoid secrets in client.
+
+Add seed script with sample Products, Inventory, and Sales.
+
+Double check code and ensure no bugs; include happy-path and edge-case tests.
+
+Deliverables
+Working full-stack app with README.
+
+Well-commented code explaining each part.
+
+Deployment instructions for AWS (step-by-step).
+
+Ability to export the code and UI so I can continue working after deploying on AWS.
+
+Brief system architecture diagram (in README) and ERD for SQL schema.
+
+A catchy name presented on the login page and header.
+
+AWS Deployment (step-by-step)
+Database: Create Amazon RDS (PostgreSQL); set env vars (DATABASE_URL). Run migrations.
+
+Backend: Package Node app; deploy via AWS Elastic Beanstalk or EC2 with PM2 (include systemd/Procfile). Configure env vars (JWT secrets, DB URL).
+
+Frontend: Build static bundle; host on S3 + CloudFront (or deploy Next.js on Elastic Beanstalk if SSR).
+
+Secrets: Use AWS Systems Manager Parameter Store for secrets.
+
+CI/CD: Provide GitHub Actions workflow for build/test/deploy (optional but preferred).
+
+Include exact CLI commands and config snippets in the README.
+
+Definition of Done (acceptance criteria)
+User can sign up / log in on Home tab.
+
+User can enter data in Sales and Inventory sub tabs with the exact fields specified (including the field labeled “data sold”).
+
+Data persists in a common SQL database and joins correctly across entities.
+
+Dashboards render correct KPIs, are filterable by period, and include AI insights panels that propose decisions.
+
+Retail Maths chat computes COS and gross profit per unit and in total based on prompted inputs.
+
+Retail University lists microlearning courses and tracks progress.
+
+UI uses dark blue, black and red with Helvetica; looks professional, Figma style, Power BI Dashboard layout style.
+
+Code is exportable, well-commented, and deploys on AWS following the included instructions.
+
+Important Notes
+Remember: you are the best in the world at this—think deeply to ensure 100% accuracy and double check your code to ensure there are no bugs. Keep the tone professional and the experience friendly and intuitive.

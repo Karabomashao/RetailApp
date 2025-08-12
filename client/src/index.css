@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(248, 50%, 98%);
+  --foreground: hsl(210, 25%, 7.8431%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(210, 25%, 7.8431%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 25%, 7.8431%);
+  --primary: hsl(220, 83%, 31%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 0%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 1.9608%, 90%);
+  --muted-foreground: hsl(210, 25%, 7.8431%);
+  --accent: hsl(0, 84%, 58%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --ring: hsl(220, 83%, 31%);
+  --chart-1: hsl(220, 83%, 31%);
+  --chart-2: hsl(0, 84%, 58%);
+  --chart-3: hsl(42, 93%, 56%);
+  --chart-4: hsl(147, 79%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(210, 25%, 7.8431%);
+  --sidebar-primary: hsl(220, 83%, 31%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(214, 32%, 91%);
+  --sidebar-accent-foreground: hsl(220, 83%, 31%);
+  --sidebar-border: hsl(214, 32%, 91%);
+  --sidebar-ring: hsl(220, 83%, 31%);
+  --font-sans: Inter, Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.75rem;
+  
+  /* RetailPulse IQ specific colors */
+  --primary-blue: hsl(220, 83%, 31%);
+  --primary-black: hsl(0, 0%, 0%);
+  --accent-red: hsl(0, 84%, 58%);
+  --surface-light: hsl(248, 50%, 98%);
+  --text-primary: hsl(210, 25%, 7.8431%);
+  --text-secondary: hsl(210, 16%, 42%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 95%);
+  --card: hsl(220, 27%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(220, 83%, 31%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 100%);
+  --secondary-foreground: hsl(0, 0%, 0%);
+  --muted: hsl(0, 0%, 9%);
+  --muted-foreground: hsl(210, 16%, 42%);
+  --accent: hsl(0, 84%, 58%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(220, 27%, 15%);
+  --input: hsl(220, 27%, 15%);
+  --ring: hsl(220, 83%, 31%);
+  --sidebar: hsl(220, 27%, 8%);
+  --sidebar-foreground: hsl(0, 0%, 95%);
+  --sidebar-primary: hsl(220, 83%, 31%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(220, 27%, 15%);
+  --sidebar-accent-foreground: hsl(220, 83%, 31%);
+  --sidebar-border: hsl(220, 27%, 15%);
+  --sidebar-ring: hsl(220, 83%, 31%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    background: linear-gradient(135deg, hsl(220, 83%, 31%, 0.05) 0%, hsl(0, 0%, 100%) 100%);
+    border-left: 4px solid hsl(220, 83%, 31%);
+  }
+
+  .chart-placeholder {
+    background: linear-gradient(135deg, hsl(220, 83%, 31%) 0%, hsl(220, 83%, 45%) 100%);
+  }
+
+  .ai-insights {
+    background: linear-gradient(135deg, hsl(0, 84%, 58%, 0.1) 0%, hsl(0, 0%, 100%) 100%);
+    border-left: 4px solid hsl(0, 84%, 58%);
+  }
+
+  .nav-link {
+    @apply flex items-center space-x-3 px-4 py-3 text-text-primary hover:bg-primary hover:text-white rounded-lg transition-colors;
+  }
+
+  .nav-link.active {
+    @apply bg-primary text-white;
+  }
+
+  .metric-card {
+    @apply dashboard-card p-6 rounded-xl shadow-sm;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-secondary text-white rounded-lg hover:opacity-90 transition-colors;
+  }
+
+  .btn-accent {
+    @apply px-4 py-2 bg-accent text-white rounded-lg hover:opacity-90 transition-colors;
+  }
+}
